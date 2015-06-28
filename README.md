@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/maiha/http-mock.svg?branch=master)](https://travis-ci.org/maiha/http-mock)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/sc.ala/http-mock_2.11/badge.svg)](https://maven-badges.herokuapp.com/maven-central/sc.ala/http-mock_2.11)
+
 # HttpMock
 
 Real http server for stubbing and expectations in Scala
