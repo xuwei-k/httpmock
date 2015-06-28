@@ -6,11 +6,13 @@ Features
 ========
 
 - Stubbing HTTP requests at real Http Server
-- Response always OK for any methods and paths
+  - responds always OK for any methods and paths
   - supported methods: GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS
+- Expecting HTTP requests as AccessLog
+  - asserts AccessLog about methods and counts
 
-Usage
-=====
+Stubbing
+========
 
 #### start (random port)
 
@@ -61,3 +63,65 @@ val server = Setting(methods = Set(GET, POST)).start
   PUT  => 404
 */
 ```
+
+Expectations
+============
+
+#### assert methods and counts
+
+- only count can be checked in current version
+
+```scala
+import sc.ala.http.mock._
+import scala.concurrent.duration._
+
+val server = HttpMock.start(9000)
+```
+
+```shell
+curl http://127.0.0.1/
+```
+
+```scala
+server.logs.expect(GET , count = 1)(1.second)  // (PASS)
+server.logs.expect(GET , count = 2)(1.second)  // java.lang.AssertionError
+server.logs.expect(POST, count = 1)(1.second)  // java.lang.AssertionError
+
+server.stop
+```
+
+#### using in Spec
+
+```scala
+import sc.ala.http.mock._
+import scala.concurrent.duration._
+import org.scalatest.FunSpec
+
+class FooSpec extends FunSpec {
+  describe("foo") {
+    it("test with real httpd") {
+      HttpMock.run { server =>
+        // your application logic to `server.url`
+        ...
+
+        // assert your requests like this
+        server.logs.expect(POST, count = 2)(3.seconds)
+      }
+    }
+  }
+}
+```
+
+
+TODO
+====
+
+#### Expectations
+
+- support path, request parameters and request bodies
+
+Library
+=======
+
+- play-2.4.1
+
