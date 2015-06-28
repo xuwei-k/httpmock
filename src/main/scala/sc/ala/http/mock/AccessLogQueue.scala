@@ -17,7 +17,7 @@ class AccessLogQueue() extends ConcurrentLinkedQueue[AccessLog] {
     */
   private val queue = this
 
-  case class AccessLogExpectation(
+  case class Expect(
     method  : String = "",  // match everything by startsWith
     count   : Int = 0
   ) {
@@ -50,5 +50,5 @@ class AccessLogQueue() extends ConcurrentLinkedQueue[AccessLog] {
     protected def now() = System.currentTimeMillis()
   }
 
-  val expect = AccessLogExpectation
+  val expect = Expect
 }
