@@ -10,9 +10,11 @@ import scala.concurrent.duration._
 object HttpMock {
   def implementedMethods: Set[String] = Set(GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS)
 
-  // syntax sugar for Setting(xxx).start
+  // syntax sugar for Setting
   def start: HttpMock = Setting().start
   def start(port: Int): HttpMock = Setting(port).start
+  def run[A](action: HttpMockUp => A): Unit = Setting().run(action)
+  def run[A](port: Int)(action: HttpMockUp => A): Unit = Setting(port).run(action)
 }
 
 trait HttpMock {
