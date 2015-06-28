@@ -2,7 +2,6 @@ package sc.ala.http.mock
 
 import play.api.mvc._
 import play.api.routing.Router.Routes
-import play.core.server._
 
 import HttpMock.implementedMethods
 

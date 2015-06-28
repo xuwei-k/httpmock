@@ -1,12 +1,5 @@
 package sc.ala.http.mock
     
-import play.core.server._
-import play.api.mvc._
-
-import java.util.concurrent.ConcurrentLinkedQueue
-import scala.util._
-import scala.concurrent.duration._
-
 object HttpMock {
   def implementedMethods: Set[String] = Set(GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS)
 

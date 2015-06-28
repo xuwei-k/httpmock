@@ -1,6 +1,6 @@
 package sc.ala.http.mock
 
-import play.core.server._
+import play.core.server.NettyServer
 
 case class HttpMockUp(setting: Setting, netty: NettyServer) extends HttpMock {
   def port: Int = netty.httpPort.get  // port must exist cause we set it and server is running
