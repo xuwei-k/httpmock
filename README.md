@@ -18,7 +18,7 @@ Stubbing
 
 ```scala
 import sc.ala.http.mock._
-val server = HttpMock.start
+val server = HttpMock.start()
 server.port  // => 37781 (automatically set by default)
 // send requests to "http://127.0.0.1:37781" (or server.url)
 server.stop
@@ -37,18 +37,18 @@ server.port  // => 9000
 
 ```scala
 val server    = HttpMock.start(9000)  // GET: ok
-val stopped   = server.stop           // GET: error
-val restarted = stopped.start         // GET: ok
+val stopped   = server.stop()         // GET: error
+val restarted = stopped.start()       // GET: ok
 ```
 
 #### loan pattern
 
-- `run` ensures `server.stop` after action
+- `run()` ensures `server.stop()` after action
 
 ```scala
-HttpMock.run       { server => ... }
-HttpMock.run(port) { server => ... }
-Setting(port).run  { server => ... }
+HttpMock.run()      { server => ... }
+HttpMock.run(port)  { server => ... }
+Setting(port).run() { server => ... }
 ```
 
 #### restrict methods
@@ -56,7 +56,7 @@ Setting(port).run  { server => ... }
 - default: accept all methods
 
 ```scala
-val server = Setting(methods = Set(GET, POST)).start
+val server = Setting(methods = Set(GET, POST)).start()
 /*
   GET  => 200
   POST => 200
@@ -87,7 +87,7 @@ server.logs.expect(GET , count = 1)(1.second)  // (PASS)
 server.logs.expect(GET , count = 2)(1.second)  // java.lang.AssertionError
 server.logs.expect(POST, count = 1)(1.second)  // java.lang.AssertionError
 
-server.stop
+server.stop()
 ```
 
 #### using in Spec
