@@ -3,7 +3,7 @@ import sbt.Keys._
 scalaVersion := "2.11.7"
 
 scalacOptions := Seq(
-  "-encoding", "UTF-8", "-target:jvm-1.7", "-deprecation",
+  "-encoding", "UTF-8", "-target:jvm-1.8", "-deprecation",
   "-feature", "-unchecked", "-language:implicitConversions", "-language:postfixOps")
 
 xerial.sbt.Sonatype.sonatypeRootSettings
