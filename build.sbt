@@ -20,7 +20,7 @@ publishTo := {
     Some("releases"  at nexus + "service/local/staging/deploy/maven2")
 }
 
-version := "0.2"  // next:"0.3-SNAPSHOT"
+version := "0.3-SNAPSHOT"
 organization := "sc.ala"
 name := "http-mock"
 description := "Real http server for stubbing and expectations in Scala"
@@ -42,7 +42,7 @@ pomExtra := (
 )
 
 libraryDependencies ++= Seq(
-  "com.typesafe.play" %% "play-netty-server" % play.core.PlayVersion.current,
+  "com.typesafe.play" %% "play-netty-server" % "2.4.1",
   "org.scalatest" %% "scalatest" % "2.2.4" % "test",
   "com.ning" % "async-http-client" % "1.9.29" % "test"
 )
