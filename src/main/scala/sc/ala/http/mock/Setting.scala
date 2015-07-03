@@ -1,5 +1,6 @@
 package sc.ala.http.mock
 
+import play.api.http.HttpVerbs
 import play.api.mvc._
 import play.api.routing.Router.Routes
 
@@ -16,7 +17,17 @@ case class Setting(
   def routeFor(method: String): Routes = {
     import play.api.routing.sird._
 
-    def action(r: RequestHeader) = Action { logs.add(r); Results.Ok(r.toString) }
+    def action(r: RequestHeader) = Action { request =>
+      if (r.method == HttpVerbs.POST || r.method == HttpVerbs.PUT) {
+        request.body match {
+          case AnyContentAsRaw(raw) => logs.add(r, raw.asBytes())
+          case _ => logs.add(r)
+        }
+      } else {
+        logs.add(r)
+      }
+      Results.Ok(r.toString)
+    }
 
     // TODO: add query parameters and request body to logs
     method match {

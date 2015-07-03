@@ -70,9 +70,8 @@ val server = Setting(methods = Set(GET, POST)).start()
 Expectations
 ============
 
-#### assert methods and counts
-
-- only count can be checked in current version
+- implemented expectations:
+  - method, body, header, count
 
 ```scala
 import sc.ala.http.mock._
@@ -81,14 +80,34 @@ import scala.concurrent.duration._
 val server = HttpMock.start(9000)
 ```
 
+#### assert methods and counts
+
 ```shell
-curl http://127.0.0.1/
+curl http://127.0.0.1:9000/
 ```
 
 ```scala
 server.logs.expect(GET , count = 1)(1.second)  // (PASS)
 server.logs.expect(GET , count = 2)(1.second)  // java.lang.AssertionError
 server.logs.expect(POST, count = 1)(1.second)  // java.lang.AssertionError
+
+server.stop()
+```
+
+#### assert methods and body and headers
+
+```shell
+curl -X POST -H "Content-type: application/octet-stream" http://127.0.0.1:9000/ -d foo
+curl -X POST -H "Content-type: application/octet-stream" http://127.0.0.1:9000/ -d bar
+curl -X POST -H "Content-type: application/octet-stream" -H "X-ID: 1" http://127.0.0.1:9000/ -d bar
+```
+
+```scala
+server.logs.expect(POST).body("foo")(1.second)           // (PASS)
+server.logs.expect(POST).body("bar")(1.second)           // java.lang.AssertionError
+server.logs.expect(POST).body("bar").count(2)(1.second)  // (PASS)
+server.logs.expect(POST).body("baz")(1.second)           // java.lang.AssertionError
+server.logs.expect(POST).header("X-ID", "1")(1.second)   // (PASS)
 
 server.stop()
 ```
