@@ -3,10 +3,10 @@ package sc.ala.http.mock
 import java.lang.AssertionError
 import scala.concurrent.duration._
 
-class ExpectSpec extends TestHelper {
+class ExpectCountSpec extends TestHelper {
   val url : String = s"http://127.0.0.1:$testPort"
 
-  describe("Exepect") {
+  describe("count") {
     it("passes an assertion about counting accesslogs") {
       HttpMock.run(testPort) { server =>
         get(url)
@@ -18,7 +18,7 @@ class ExpectSpec extends TestHelper {
       HttpMock.run(testPort) { server =>
         get(url)
         intercept[AssertionError] {
-          server.logs.expect(GET, count = 2)(1.second)
+          server.logs.expect(GET, count = 2)(0.5.second)
         }
       }
     }
@@ -27,7 +27,7 @@ class ExpectSpec extends TestHelper {
       HttpMock.run(testPort) { server =>
         post(url, "body")
         intercept[AssertionError] {
-          server.logs.expect(GET, count = 1)(1.second)
+          server.logs.expect(GET, count = 1)(0.5.second)
         }
       }
     }

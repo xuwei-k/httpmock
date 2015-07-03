@@ -4,6 +4,8 @@ import org.scalatest.{BeforeAndAfterEach, FunSpec}
 import com.ning.http.client._
 import scala.collection.mutable
 
+import collection.JavaConversions._
+
 trait TestHelper extends FunSpec with BeforeAndAfterEach with TestConfig {
   import java.util.concurrent.{Future => JavaFuture, TimeUnit}
 
@@ -35,8 +37,10 @@ trait TestHelper extends FunSpec with BeforeAndAfterEach with TestConfig {
     f.get(requestTimeoutMs + 500, TimeUnit.MILLISECONDS)
   }
 
-  def post(url: String, body: String): Response = {
-    val f: JavaFuture[Response] = newAsyncHttpClient.preparePost(url).setBody(body).execute()
+  def post(url: String, body: String, headers: Map[String, String] = Map[String, String]()): Response = {
+    val map = new FluentCaseInsensitiveStringsMap()
+    for ((k,v) <- headers) map.add(k, v)
+    val f: JavaFuture[Response] = newAsyncHttpClient.preparePost(url).setBody(body).setHeaders(map).execute()
     f.get(requestTimeoutMs + 500, TimeUnit.MILLISECONDS)
   }
 
