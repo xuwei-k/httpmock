@@ -1,5 +1,7 @@
 package sc.ala.http.mock
 
+import java.nio.charset.Charset
+import java.nio.charset.StandardCharsets.UTF_8
 import play.api.mvc.Headers
 import scala.concurrent.duration._
 
@@ -14,7 +16,7 @@ trait Expectation { this: AccessLogQueue =>
     bodyOpt : Option[Array[Byte]] = None,
     count   : Int = 1
   ) {
-    def body(v: String) : Expect = copy(bodyOpt = Some(v.getBytes()))
+    def body(v: String, charset: Charset = UTF_8) : Expect = copy(bodyOpt = Some(v.getBytes(charset)))
     def count(v: Int)   : Expect = copy(count = v)
 
     def apply(timeout : FiniteDuration = 1.second, interval : Int = 100): Unit = {
