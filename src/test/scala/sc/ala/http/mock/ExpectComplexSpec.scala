@@ -27,7 +27,7 @@ class ExpectComplexSpec extends TestHelper {
         get(url)
         post(url, "foo", headers = Map("X-ID" -> "1"))
         post(url, "bar", headers = Map("X-ID" -> "2"))
-        post(url, "bar", headers = Map("X-ID" -> "2"))  // emmulates duplicated post
+        post(url, "bar", headers = Map("X-ID" -> "2"))  // emulates duplicated post
 
         server.logs.expect(count = 4)       (timeout)
         server.logs.expect(POST, count = 3) (timeout)
