@@ -24,7 +24,7 @@ trait Expectation { this: AccessLogQueue =>
       while(true) {
         foundCount() match {
           case got if got > count  => throw new AssertionError(s"expected $count ${method}, but got $got")
-          case got if got == count => assert(true); return  // successfully found
+          case got if got == count => return  // successfully found
           case got if inTime()     => // try again
           case got => throw new AssertionError(s"timeout: expected $count ${method}, but got $got (in $timeout)")
         }
