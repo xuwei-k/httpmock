@@ -112,6 +112,22 @@ server.logs.expect(POST).header("X-ID", "1")(1.second)   // (PASS)
 server.stop()
 ```
 
+#### assert bodies as Set
+
+```shell
+curl -X POST -H "Content-type: application/octet-stream" http://127.0.0.1:9000/ -d foo
+curl -X POST -H "Content-type: application/octet-stream" http://127.0.0.1:9000/ -d bar
+curl -X POST -H "Content-type: application/octet-stream" -H "X-ID: 1" http://127.0.0.1:9000/ -d bar
+```
+
+```scala
+server.logs.expect(POST).bodies(Set("foo", "bar"))(1.second)  // (PASS)
+server.logs.expect(POST).bodies(Set("bar", "foo"))(1.second)  // (PASS)
+server.logs.expect(POST).bodies(Set("foo", "XXX"))(1.second)  // java.lang.AssertionError
+
+server.stop()
+```
+
 #### using in Spec
 
 ```scala

@@ -4,7 +4,7 @@ import play.api.mvc.RequestHeader
 
 final case class AccessLog(
   request : RequestHeader,
-  bodyOpt : Option[Array[Byte]] = None
+  bodyOpt : Option[ArrayByte] = None
 ) {
 
   override def equals(other: Any): Boolean = other match {
@@ -16,7 +16,7 @@ final case class AccessLog(
 
   def ===(that: AccessLog): Boolean = (this.bodyOpt, that.bodyOpt) match {
     case (Some(body1), Some(body2)) =>
-      (this.request == that.request) && java.util.Arrays.equals(body1, body2)
+      (this.request == that.request) && body1 == body2
     case (None, None) =>
       this.request == that.request
     case _ =>
@@ -24,7 +24,7 @@ final case class AccessLog(
   }
 
   override def hashCode = {
-    (request.hashCode() * 31) + bodyOpt.map(java.util.Arrays.hashCode(_)).getOrElse(7)
+    (request.hashCode() * 31) + bodyOpt.map(_.hashCode).getOrElse(7)
   }
 
 }

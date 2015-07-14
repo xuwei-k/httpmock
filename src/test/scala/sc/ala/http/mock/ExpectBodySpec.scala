@@ -1,7 +1,5 @@
 package sc.ala.http.mock
 
-import java.lang.AssertionError
-
 class ExpectBodySpec extends TestHelper {
   val url : String = s"http://127.0.0.1:$testPort"
 

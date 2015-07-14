@@ -21,7 +21,7 @@ case class Setting(
     def action(r: RequestHeader) = Action { request =>
       if (r.method == HttpVerbs.POST || r.method == HttpVerbs.PUT) {
         request.body match {
-          case AnyContentAsRaw(raw) => logs.add(r, raw.asBytes())
+          case AnyContentAsRaw(raw) => logs.add(r, raw.asBytes().map(ArrayByte))
           case _ => logs.add(r)
         }
       } else {
