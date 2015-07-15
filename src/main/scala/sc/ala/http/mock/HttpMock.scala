@@ -1,7 +1,7 @@
 package sc.ala.http.mock
     
 object HttpMock {
-  def implementedMethods: Set[String] = Set(GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS)
+  val implementedMethods: Set[HttpMethod] = Set(GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS)
 
   // syntax sugar for Setting
   def start(): HttpMock = Setting().start()

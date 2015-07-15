@@ -8,14 +8,15 @@ import HttpMock.implementedMethods
 
 case class Setting(
   port    : Int = 0,
-  methods : Set[String] = implementedMethods
+  methods : Set[HttpMethod] = implementedMethods
 ) {
   validate()
 
   val logs = new AccessLogQueue()
 
-  def routeFor(method: String): Routes = {
-    import play.api.routing.sird._
+  private[this] def routeFor(method: HttpMethod): Routes = {
+    import play.api.routing.sird
+    import play.api.routing.sird.UrlContext
 
     def action(r: RequestHeader) = Action { request =>
       if (r.method == HttpVerbs.POST || r.method == HttpVerbs.PUT) {
@@ -31,13 +32,13 @@ case class Setting(
 
     // TODO: add query parameters and request body to logs
     method match {
-      case "GET"     => { case r@ GET    (p"/$path*") => action(r) }
-      case "POST"    => { case r@ POST   (p"/$path*") => action(r) }
-      case "PUT"     => { case r@ PUT    (p"/$path*") => action(r) }
-      case "PATCH"   => { case r@ PATCH  (p"/$path*") => action(r) }
-      case "DELETE"  => { case r@ DELETE (p"/$path*") => action(r) }
-      case "HEAD"    => { case r@ HEAD   (p"/$path*") => action(r) }
-      case "OPTIONS" => { case r@ OPTIONS(p"/$path*") => action(r) }
+      case GET     => { case r@ sird.GET    (p"/$path*") => action(r) }
+      case POST    => { case r@ sird.POST   (p"/$path*") => action(r) }
+      case PUT     => { case r@ sird.PUT    (p"/$path*") => action(r) }
+      case PATCH   => { case r@ sird.PATCH  (p"/$path*") => action(r) }
+      case DELETE  => { case r@ sird.DELETE (p"/$path*") => action(r) }
+      case HEAD    => { case r@ sird.HEAD   (p"/$path*") => action(r) }
+      case OPTIONS => { case r@ sird.OPTIONS(p"/$path*") => action(r) }
     }
   }
 
