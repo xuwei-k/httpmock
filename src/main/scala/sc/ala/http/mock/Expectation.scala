@@ -11,11 +11,13 @@ trait Expectation { this: AccessLogQueue =>
   lazy val expect = Expect
 
   case class Expect(
-    method  : String = "",  // match everything by startsWith
+    methodNullable: HttpMethod = null, // accept all method if null
     headers : Headers = Headers(),
     bodyOpt : Option[Array[Byte]] = None,
     count   : Int = 1
   ) {
+    private[this] def methodOpt: Option[HttpMethod] = Option(methodNullable)
+    private[this] def method: String = methodOpt.fold("")(_.value)
     def body(v: String, charset: Charset = UTF_8) : Expect = copy(bodyOpt = Some(v.getBytes(charset)))
     def count(v: Int)   : Expect = copy(count = v)
 
@@ -36,7 +38,12 @@ trait Expectation { this: AccessLogQueue =>
 
     def header(key: String, value: String): Expect = copy(headers = headers.add((key, value)))
 
-    protected def isMatchMethod(log: AccessLog): Boolean = log.request.method.startsWith(method)
+    protected def isMatchMethod(log: AccessLog): Boolean = {
+      methodOpt match {
+        case None => true
+        case Some(m) => log.request.method == m.value
+      }
+    }
 
     protected def isMatchHeader(log: AccessLog): Boolean = {
       val expected = headers.headers
