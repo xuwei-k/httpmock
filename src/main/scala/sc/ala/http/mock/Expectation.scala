@@ -13,11 +13,8 @@ trait ExpectationBuilder {
   def methodOpt: Option[HttpMethod] = Option(methodNullable)
 }
 
-/**
- * add 'expect' method to AccessLogQueue
- */
-trait Expectation { this: AccessLogQueue =>
-  private val queue = this
+trait Expectation {
+  private[mock] val queue = new AccessLogQueue()
   lazy val expect = EachLogExpectationBuilder
 
   case class EachLogExpectationBuilder(
