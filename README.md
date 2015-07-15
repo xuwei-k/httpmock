@@ -145,5 +145,5 @@ TODO
 Library
 =======
 
-- play-2.4.1
+- play-2.4.x
 
