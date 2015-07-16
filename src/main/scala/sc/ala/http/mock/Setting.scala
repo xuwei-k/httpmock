@@ -6,12 +6,12 @@ import play.api.routing.Router.Routes
 
 import HttpMock.implementedMethods
 
-case class Setting(
+final case class Setting(
   port    : Int = 0,
   methods : Set[HttpMethod] = implementedMethods
 ) {
 
-  val logs = new Expectation{}
+  val logs = new AccessLogQueue()
 
   private[this] def routeFor(method: HttpMethod): Routes = {
     import play.api.routing.sird
@@ -20,11 +20,11 @@ case class Setting(
     def action(r: RequestHeader) = Action { request =>
       if (r.method == HttpVerbs.POST || r.method == HttpVerbs.PUT) {
         request.body match {
-          case AnyContentAsRaw(raw) => logs.queue.add(r, raw.asBytes().map(ArrayByte))
-          case _ => logs.queue.add(r)
+          case AnyContentAsRaw(raw) => logs.add(r, raw.asBytes().map(ArrayByte))
+          case _ => logs.add(r)
         }
       } else {
-        logs.queue.add(r)
+        logs.add(r)
       }
       Results.Ok(r.toString)
     }
