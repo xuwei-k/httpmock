@@ -34,7 +34,7 @@ trait Expectation { this: AccessLogQueue =>
     def header(key: String, value: String): EachLogExpectationBuilder = copy(headers = headers.add((key, value)))
 
     /** converting */
-    def bodies(bodies: Iterable[String], charset: Charset = UTF_8) : AllLogExpectationBuilder = {
+    def bodies(bodies: Set[String], charset: Charset = UTF_8) : AllLogExpectationBuilder = {
       // raise an error if both bodyOpt and bodies are given
       if (bodyOpt.isDefined) {
         throw new IllegalArgumentException("body and bodies are exclusive")
@@ -57,7 +57,7 @@ trait Expectation { this: AccessLogQueue =>
   case class AllLogExpectationBuilder(
     methodNullable: HttpMethod = null, // accept all method if null
     headers : Headers = Headers(),
-    bodies  : Iterable[ArrayByte] = Iterable()
+    bodies  : Set[ArrayByte]
   ) extends ExpectationBuilder {
     /** converting */
     def header(key: String, value: String): AllLogExpectationBuilder = copy(headers = headers.add((key, value)))
@@ -151,10 +151,7 @@ trait Expectation { this: AccessLogQueue =>
     private def actual   = queue.filter(isMatchEach).flatMap(_.bodyOpt.toSeq)  // Seq("body1", "body2")
 
     private def isMatchAll: Boolean = {
-      expected match {
-        case set: Set[ArrayByte] => set.diff(actual.toSet).isEmpty
-        case unknown => throw new AssertionError(s"${unknown.getClass.getName} is not supported for bodies")
-      }
+      expected.diff(actual.toSet).isEmpty
     }
 
     protected def isMatchMethod(log: AccessLog): Boolean = {
