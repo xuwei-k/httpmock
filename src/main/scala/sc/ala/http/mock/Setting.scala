@@ -10,7 +10,6 @@ case class Setting(
   port    : Int = 0,
   methods : Set[HttpMethod] = implementedMethods
 ) {
-  validate()
 
   val logs = new AccessLogQueue()
 
@@ -44,12 +43,6 @@ case class Setting(
 
   def routes: Routes = methods.map(routeFor).foldLeft(PartialFunction.empty: Routes) {_ orElse _}
 
-  private def validate(): Unit = {
-    methods.diff(implementedMethods) match {
-      case unknown if unknown.nonEmpty => s"unknown Methods $unknown"
-      case _ =>
-    }
-  }
 }
 
 object Setting {
