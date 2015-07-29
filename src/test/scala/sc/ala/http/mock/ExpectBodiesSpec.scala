@@ -27,7 +27,7 @@ class ExpectBodiesSpec extends TestHelper {
     it("throws IllegalArgumentException when non supported iterators are given") {
       HttpMock.run(testPort) { server =>
         intercept[IllegalArgumentException] {
-          server.logs.expect(POST).body("foo").bodies(Seq("body"))  (timeout)
+          server.logs.expect(POST).body("foo").bodies(Set("body"))  (timeout)
         }
       }
     }
