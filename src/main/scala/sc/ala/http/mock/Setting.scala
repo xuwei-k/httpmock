@@ -11,7 +11,7 @@ case class Setting(
   methods : Set[HttpMethod] = implementedMethods
 ) {
 
-  val logs = new AccessLogQueue()
+  val logs = new Expectation{}
 
   private[this] def routeFor(method: HttpMethod): Routes = {
     import play.api.routing.sird
@@ -20,11 +20,11 @@ case class Setting(
     def action(r: RequestHeader) = Action { request =>
       if (r.method == HttpVerbs.POST || r.method == HttpVerbs.PUT) {
         request.body match {
-          case AnyContentAsRaw(raw) => logs.add(r, raw.asBytes().map(ArrayByte))
-          case _ => logs.add(r)
+          case AnyContentAsRaw(raw) => logs.queue.add(r, raw.asBytes().map(ArrayByte))
+          case _ => logs.queue.add(r)
         }
       } else {
-        logs.add(r)
+        logs.queue.add(r)
       }
       Results.Ok(r.toString)
     }

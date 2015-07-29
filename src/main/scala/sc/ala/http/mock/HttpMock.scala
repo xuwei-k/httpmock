@@ -17,5 +17,5 @@ trait HttpMock {
   def run[A](action: HttpMockUp => A): Unit
   def port : Int
   def url  : String = s"http://127.0.0.1:$port/"
-  def logs : AccessLogQueue = setting.logs
+  def logs : Expectation = setting.logs
 }
