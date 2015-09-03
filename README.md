@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/maiha/http-mock.svg?branch=master)](https://travis-ci.org/maiha/http-mock)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/sc.ala/http-mock_2.11/badge.svg)](https://maven-badges.herokuapp.com/maven-central/sc.ala/http-mock_2.11)
+[![scaladoc](http://javadoc-badge.appspot.com/sc.ala/http-mock_2.11.svg?label=scaladoc)](http://javadoc-badge.appspot.com/sc.ala/http-mock_2.11)
+
 
 # HttpMock
 
