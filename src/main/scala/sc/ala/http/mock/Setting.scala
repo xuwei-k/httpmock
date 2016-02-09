@@ -8,7 +8,8 @@ import HttpMock.implementedMethods
 
 final case class Setting(
   port    : Int = 0,
-  methods : Set[HttpMethod] = implementedMethods
+  methods : Set[HttpMethod] = implementedMethods,
+  handler : PartialFunction[RequestHeader, Result] = PartialFunction.empty
 ) {
 
   val logs = new AccessLogQueue()
@@ -26,7 +27,7 @@ final case class Setting(
       } else {
         logs.add(r)
       }
-      Results.Ok(r.toString)
+      handler.applyOrElse[RequestHeader, Result](r, r => Results.Ok(r.toString))
     }
 
     // TODO: add query parameters and request body to logs

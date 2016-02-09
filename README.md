@@ -69,6 +69,18 @@ val server = Setting(methods = Set(GET, POST)).start()
 */
 ```
 
+### customize request handler
+
+```
+val server = Setting(handler = {
+    case h: RequestHeader if h.version == "HTTP/1.0" => Results.HttpVersionNotSupported
+})
+/*
+  GET  => 200
+  GET with HTTP/1.0 => 505
+*/
+```
+
 Expectations
 ============
 
