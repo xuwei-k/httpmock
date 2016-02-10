@@ -20,7 +20,7 @@ publishTo := {
     Some("releases"  at nexus + "service/local/staging/deploy/maven2")
 }
 
-version := "0.3.1"
+version := "0.3.2-SNAPSHOT"
 organization := "sc.ala"
 name := "http-mock"
 description := "Real http server for stubbing and expectations in Scala"
