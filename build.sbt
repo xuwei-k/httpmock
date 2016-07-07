@@ -1,6 +1,6 @@
 import sbt.Keys._
 
-scalaVersion := "2.11.7"
+scalaVersion := "2.11.8"
 
 scalacOptions := Seq(
   "-encoding", "UTF-8", "-target:jvm-1.8", "-deprecation",
