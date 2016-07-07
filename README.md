@@ -175,5 +175,5 @@ TODO
 Library
 =======
 
-- play-2.4.x
+- play-2.5.x
 
