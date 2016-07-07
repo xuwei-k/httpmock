@@ -2,12 +2,14 @@ package sc.ala.http.mock
 
 import java.util
 
+import akka.util.ByteString
+
 /**
  * almost same as Array[Byte], but this allows easy equality
  */
-final case class ArrayByte(value: Array[Byte]) {
+final case class ArrayByte(value: ByteString) {
   def ===(that: ArrayByte): Boolean = {
-    util.Arrays.equals(this.value, that.value)
+    this.value == that.value
   }
 
   override def equals(that: Any): Boolean = that match {
@@ -15,19 +17,19 @@ final case class ArrayByte(value: Array[Byte]) {
     case array => false
   }
 
-  override def hashCode: Int = util.Arrays.hashCode(value)
+  override def hashCode: Int = value.hashCode()
 
   def length: Int = value.length
 
-  def copy(): ArrayByte = ArrayByte(value.clone())
+  def copy(): ArrayByte = ArrayByte(value)
 
   override def toString: String = {
     s"ArrayByte(length = ${value.length}, value = 0x${ArrayByte.byte2string(value, 32)})"
   }
 }
 
-object ArrayByte extends (Array[Byte] => ArrayByte) {
-  def byte2string(bytes: Array[Byte], maxSize: Int): String = {
+object ArrayByte extends (ByteString => ArrayByte) {
+  def byte2string(bytes: ByteString, maxSize: Int): String = {
     val builder = new java.lang.StringBuilder
     var i = 0
     val len = bytes.length min maxSize

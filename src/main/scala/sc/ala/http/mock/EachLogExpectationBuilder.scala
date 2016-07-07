@@ -2,7 +2,10 @@ package sc.ala.http.mock
 
 import java.nio.charset.Charset
 import java.nio.charset.StandardCharsets.UTF_8
+
+import akka.util.ByteString
 import play.api.mvc.Headers
+
 import scala.concurrent.duration._
 
 final case class EachLogExpectationBuilder(
@@ -14,7 +17,7 @@ final case class EachLogExpectationBuilder(
 ) {
   def method: String = methodOpt.fold("")(_.value)
 
-  def body(v: String, charset: Charset = UTF_8): EachLogExpectationBuilder = copy(bodyOpt = Some(ArrayByte(v.getBytes(charset))))
+  def body(v: String, charset: Charset = UTF_8): EachLogExpectationBuilder = copy(bodyOpt = Some(ArrayByte(ByteString(v.getBytes(charset)))))
 
   def count(v: Int): EachLogExpectationBuilder = copy(count = v)
 
@@ -32,7 +35,7 @@ final case class EachLogExpectationBuilder(
       throw new IllegalArgumentException("bodies and count > 1 are exclusive")
     }
 
-    AllLogExpectationBuilder(methodOpt, headers, bodies.map(x => ArrayByte(x.getBytes(charset))), queue)
+    AllLogExpectationBuilder(methodOpt, headers, bodies.map(x => ArrayByte(ByteString(x.getBytes(charset)))), queue)
   }
 
   /** await result */
