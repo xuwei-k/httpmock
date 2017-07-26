@@ -1,6 +1,7 @@
-import sbt.Keys._
+val Scala211 = "2.11.11"
 
-scalaVersion := "2.11.8"
+crossScalaVersions := "2.12.2" :: Scala211 :: Nil
+scalaVersion := Scala211
 
 scalacOptions := Seq(
   "-encoding", "UTF-8", "-target:jvm-1.8", "-deprecation",
@@ -42,9 +43,9 @@ pomExtra := (
 )
 
 libraryDependencies ++= Seq(
-  "com.typesafe.play" %% "play-netty-server" % "2.5.4",
-  "org.scalatest" %% "scalatest" % "2.2.4" % "test",
-  "com.ning" % "async-http-client" % "1.9.29" % "test"
+  "com.typesafe.play" %% "play-netty-server" % "2.6.2",
+  "org.scalatest" %% "scalatest" % "3.0.3" % "test",
+  "com.ning" % "async-http-client" % "1.9.40" % "test"
 )
 
 fork in run := true
