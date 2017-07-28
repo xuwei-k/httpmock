@@ -7,20 +7,6 @@ scalacOptions := Seq(
   "-encoding", "UTF-8", "-target:jvm-1.8", "-deprecation",
   "-feature", "-unchecked", "-language:implicitConversions", "-language:postfixOps")
 
-xerial.sbt.Sonatype.sonatypeRootSettings
-
-// Maven Publishing
-// http://www.scala-sbt.org/0.13/docs/Using-Sonatype.html
-
-publishMavenStyle := true
-publishTo := {
-  val nexus = "https://oss.sonatype.org/"
-  if (isSnapshot.value)
-    Some("snapshots" at nexus + "content/repositories/snapshots")
-  else
-    Some("releases"  at nexus + "service/local/staging/deploy/maven2")
-}
-
 version := "0.3.3-SNAPSHOT"
 organization := "com.github.xuwei-k"
 name := "httpmock"
