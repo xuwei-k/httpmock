@@ -1,8 +1,8 @@
-package sc.ala.http.mock
+package httpmock
 
 import scala.concurrent.duration._
 
-private[mock] final class AllLogExecutionContext(builder: AllLogExpectationBuilder) {
+final class AllLogExecutionContext(builder: AllLogExpectationBuilder) {
 
   import builder._
 

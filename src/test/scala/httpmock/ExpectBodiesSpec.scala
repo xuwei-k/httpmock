@@ -1,4 +1,4 @@
-package sc.ala.http.mock
+package httpmock
 
 class ExpectBodiesSpec extends TestHelper {
   val url : String = s"http://127.0.0.1:$testPort"

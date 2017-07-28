@@ -1,4 +1,4 @@
-package sc.ala.http.mock
+package httpmock
 
 sealed abstract class HttpMethod(val value: String) extends Product with Serializable
 case object GET extends HttpMethod("GET")

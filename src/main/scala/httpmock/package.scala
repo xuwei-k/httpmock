@@ -1,5 +1,3 @@
-package sc.ala.http
-
-package object mock {
+package object httpmock {
   def now(): Long = System.currentTimeMillis()
 }

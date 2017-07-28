@@ -1,5 +1,7 @@
 language: scala
-script: sbt "test"
 sudo: false
 jdk:
-  - oraclejdk8
+- oraclejdk8
+scala:
+- 2.12.3
+- 2.11.11

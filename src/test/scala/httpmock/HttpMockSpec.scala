@@ -1,4 +1,4 @@
-package sc.ala.http.mock
+package httpmock
 
 class HttpMockSpec extends TestHelper {
   describe("start") {

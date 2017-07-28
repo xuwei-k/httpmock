@@ -1,4 +1,4 @@
-package sc.ala.http.mock
+package httpmock
 
 import org.scalatest.{BeforeAndAfterEach, FunSpec}
 import com.ning.http.client._

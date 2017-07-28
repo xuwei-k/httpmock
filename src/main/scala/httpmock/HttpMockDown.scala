@@ -1,4 +1,4 @@
-package sc.ala.http.mock
+package httpmock
 
 import play.api.Mode
 import play.core.server.{NettyServer, ServerConfig}

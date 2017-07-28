@@ -1,4 +1,4 @@
-package sc.ala.http.mock
+package httpmock
 
 import java.nio.charset.Charset
 import java.nio.charset.StandardCharsets.UTF_8
@@ -13,7 +13,7 @@ final case class EachLogExpectationBuilder(
   headers : Headers = Headers(),
   bodyOpt : Option[ArrayByte] = None,  // body for sequential matcher
   count   : Int = 1,
-  private[mock] queue: AccessLogQueue
+  queue: AccessLogQueue
 ) {
   def method: String = methodOpt.fold("")(_.value)
 

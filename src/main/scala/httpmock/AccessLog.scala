@@ -1,5 +1,5 @@
-package sc.ala.http.mock
-    
+package httpmock
+
 import play.api.mvc.RequestHeader
 
 final case class AccessLog(

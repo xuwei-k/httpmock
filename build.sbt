@@ -1,6 +1,6 @@
 val Scala211 = "2.11.11"
 
-crossScalaVersions := "2.12.2" :: Scala211 :: Nil
+crossScalaVersions := "2.12.3" :: Scala211 :: Nil
 scalaVersion := Scala211
 
 scalacOptions := Seq(
@@ -22,23 +22,23 @@ publishTo := {
 }
 
 version := "0.3.3-SNAPSHOT"
-organization := "sc.ala"
-name := "http-mock"
+organization := "com.github.xuwei-k"
+name := "httpmock"
 description := "Real http server for stubbing and expectations in Scala"
-homepage := Some(url("https://github.com/maiha/http-mock"))
+homepage := Some(url("https://github.com/xuwei-k/httpmock"))
 licenses := Seq("MIT License" -> url("http://www.opensource.org/licenses/mit-license.php"))
 
 pomExtra := (
      <developers>
         <developer>
-          <id>maiha</id>
-          <name>Kazunori Nishi</name>
-          <url>https://github.com/maiha</url>
+          <id>xuwei-k</id>
+          <name>Kenji Yoshida</name>
+          <url>https://github.com/xuwei-k</url>
         </developer>
       </developers>
       <scm>
-        <url>https://github.com/maiha/http-mock</url>
-        <connection>scm:git:git@github.com:maiha/http-mock.git</connection>
+        <url>https://github.com/xuwei-k/httpmock</url>
+        <connection>scm:git:git@github.com:xuwei-k/httpmock.git</connection>
       </scm>
 )
 

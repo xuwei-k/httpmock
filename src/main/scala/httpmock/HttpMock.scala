@@ -1,5 +1,5 @@
-package sc.ala.http.mock
-    
+package httpmock
+
 object HttpMock {
   val implementedMethods: Set[HttpMethod] = Set(GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS)
 

@@ -1,4 +1,4 @@
-package sc.ala.http.mock
+package httpmock
 
 trait TestConfig {
   protected def testPort         : Int = 2080  // pray this port is not used

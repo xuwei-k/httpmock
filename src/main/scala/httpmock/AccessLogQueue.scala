@@ -1,5 +1,5 @@
-package sc.ala.http.mock
-    
+package httpmock
+
 import java.util.concurrent.ConcurrentLinkedQueue
 import play.api.mvc._
 

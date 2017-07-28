@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/maiha/http-mock.svg?branch=master)](https://travis-ci.org/maiha/http-mock)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/sc.ala/http-mock_2.11/badge.svg)](https://maven-badges.herokuapp.com/maven-central/sc.ala/http-mock_2.11)
-[![scaladoc](http://javadoc-badge.appspot.com/sc.ala/http-mock_2.11.svg?label=scaladoc)](http://javadoc-badge.appspot.com/sc.ala/http-mock_2.11)
+[![Build Status](https://travis-ci.org/xuwei-k/httpmock.svg?branch=master)](https://travis-ci.org/xuwei-k/httpmock)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.xuwei-k/httpmock_2.11/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.xuwei-k/httpmock_2.11)
+[![scaladoc](http://javadoc-badge.appspot.com/com.github.xuwei-k/httpmock_2.11.svg?label=scaladoc)](http://javadoc-badge.appspot.com/com.github.xuwei-k/httpmock_2.11)
 
 
 # HttpMock
@@ -22,7 +22,7 @@ Stubbing
 #### start (random port)
 
 ```scala
-import sc.ala.http.mock._
+import httpmock._
 val server = HttpMock.start()
 server.port  // => 37781 (automatically set by default)
 // send requests to "http://127.0.0.1:37781" (or server.url)
@@ -88,7 +88,7 @@ Expectations
   - method, body, header, count
 
 ```scala
-import sc.ala.http.mock._
+import httpmock._
 import scala.concurrent.duration._
 
 val server = HttpMock.start(9000)
@@ -145,7 +145,7 @@ server.stop()
 #### using in Spec
 
 ```scala
-import sc.ala.http.mock._
+import httpmock._
 import scala.concurrent.duration._
 import org.scalatest.FunSpec
 
@@ -163,17 +163,3 @@ class FooSpec extends FunSpec {
   }
 }
 ```
-
-
-TODO
-====
-
-#### Expectations
-
-- support path, request parameters and request bodies
-
-Library
-=======
-
-- play-2.5.x
-

@@ -1,4 +1,4 @@
-package sc.ala.http.mock
+package httpmock
 
 import play.api.mvc.Headers
 import scala.concurrent.duration._
@@ -7,7 +7,7 @@ case class AllLogExpectationBuilder(
   methodOpt: Option[HttpMethod], // accept all method if None
   headers : Headers = Headers(),
   bodies  : Set[ArrayByte],
-  private[mock] val queue: AccessLogQueue
+  val queue: AccessLogQueue
 ) {
   def method: String = methodOpt.fold("")(_.value)
   /** converting */
