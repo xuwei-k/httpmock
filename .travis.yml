@@ -9,6 +9,10 @@ before_cache:
 sudo: false
 jdk:
 - oraclejdk8
+addons:
+  apt:
+    packages:
+    - oracle-java8-installer
 scala:
 - 2.12.3
 - 2.11.11
