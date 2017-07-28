@@ -1,5 +1,8 @@
 val Scala211 = "2.11.11"
 
+releasePublishArtifactsAction := PgpKeys.publishSigned.value
+releaseCrossBuild := true
+
 crossScalaVersions := "2.12.3" :: Scala211 :: Nil
 scalaVersion := Scala211
 
@@ -7,7 +10,6 @@ scalacOptions := Seq(
   "-encoding", "UTF-8", "-target:jvm-1.8", "-deprecation",
   "-feature", "-unchecked", "-language:implicitConversions", "-language:postfixOps")
 
-version := "0.3.3-SNAPSHOT"
 organization := "com.github.xuwei-k"
 name := "httpmock"
 description := "Real http server for stubbing and expectations in Scala"
