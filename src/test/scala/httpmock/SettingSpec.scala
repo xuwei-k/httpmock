@@ -6,7 +6,7 @@ class SettingSpec extends TestHelper {
   describe("Setting()") {
     it("can start http service on some port") {
       val setting = Setting()
-      start(setting){ server =>
+      start(setting) { server =>
         assert(server.port > 0)
       }
     }

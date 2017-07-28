@@ -3,9 +3,9 @@ package httpmock
 import java.util.concurrent.ExecutionException
 
 class RunnableSpec extends TestHelper {
-  val url : String = s"http://127.0.0.1:$testPort"
-  def ok(): Unit   = assert(get(url).getStatusCode === 200)
-  def ng(): Unit   = intercept[ExecutionException] { get(url) }
+  val url: String = s"http://127.0.0.1:$testPort"
+  def ok(): Unit = assert(get(url).getStatusCode === 200)
+  def ng(): Unit = intercept[ExecutionException] { get(url) }
 
   describe("Setting()") {
     it("run in loan pattern") {

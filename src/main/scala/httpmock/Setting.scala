@@ -7,9 +7,9 @@ import play.api.routing.Router.Routes
 import HttpMock.implementedMethods
 
 final case class Setting(
-  port    : Int = 0,
-  methods : Set[HttpMethod] = implementedMethods,
-  handler : PartialFunction[RequestHeader, Result] = PartialFunction.empty
+  port: Int = 0,
+  methods: Set[HttpMethod] = implementedMethods,
+  handler: PartialFunction[RequestHeader, Result] = PartialFunction.empty
 ) {
 
   val logs = new AccessLogQueue()
@@ -32,17 +32,17 @@ final case class Setting(
 
     // TODO: add query parameters and request body to logs
     method match {
-      case GET     => { case r@ sird.GET    (p"/$path*") => action(r) }
-      case POST    => { case r@ sird.POST   (p"/$path*") => action(r) }
-      case PUT     => { case r@ sird.PUT    (p"/$path*") => action(r) }
-      case PATCH   => { case r@ sird.PATCH  (p"/$path*") => action(r) }
-      case DELETE  => { case r@ sird.DELETE (p"/$path*") => action(r) }
-      case HEAD    => { case r@ sird.HEAD   (p"/$path*") => action(r) }
-      case OPTIONS => { case r@ sird.OPTIONS(p"/$path*") => action(r) }
+      case GET => { case r @ sird.GET(p"/$path*") => action(r) }
+      case POST => { case r @ sird.POST(p"/$path*") => action(r) }
+      case PUT => { case r @ sird.PUT(p"/$path*") => action(r) }
+      case PATCH => { case r @ sird.PATCH(p"/$path*") => action(r) }
+      case DELETE => { case r @ sird.DELETE(p"/$path*") => action(r) }
+      case HEAD => { case r @ sird.HEAD(p"/$path*") => action(r) }
+      case OPTIONS => { case r @ sird.OPTIONS(p"/$path*") => action(r) }
     }
   }
 
-  def routes: Routes = methods.map(routeFor).foldLeft(PartialFunction.empty: Routes) {_ orElse _}
+  def routes: Routes = methods.map(routeFor).foldLeft(PartialFunction.empty: Routes) { _ orElse _ }
 
 }
 

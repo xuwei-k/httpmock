@@ -36,13 +36,14 @@ final class AllLogExecutionContext(builder: AllLogExpectationBuilder) {
   private[this] def isMatchHeader(log: AccessLog): Boolean = {
     val expected = headers.headers
     val accessed = log.request.headers.headers
-    expected.forall { case (k1, v1) =>
-      accessed.exists { case (k2, v2) =>
-        k1 == k2 && v1 == v2
-      }
+    expected.forall {
+      case (k1, v1) =>
+        accessed.exists {
+          case (k2, v2) =>
+            k1 == k2 && v1 == v2
+        }
     }
   }
 
   private[this] def isMatchEach(log: AccessLog): Boolean = isMatchMethod(log) && isMatchHeader(log)
 }
-

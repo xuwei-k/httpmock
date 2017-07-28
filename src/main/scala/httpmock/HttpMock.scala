@@ -11,11 +11,11 @@ object HttpMock {
 }
 
 trait HttpMock {
-  def setting : Setting
-  def start() : HttpMock
-  def stop()  : HttpMock
+  def setting: Setting
+  def start(): HttpMock
+  def stop(): HttpMock
   def run[A](action: HttpMockUp => A): Unit
-  def port : Int
-  def url  : String = s"http://127.0.0.1:$port/"
-  def logs : Expectation = new Expectation(setting.logs)
+  def port: Int
+  def url: String = s"http://127.0.0.1:$port/"
+  def logs: Expectation = new Expectation(setting.logs)
 }

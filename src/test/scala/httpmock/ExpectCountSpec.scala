@@ -3,13 +3,13 @@ package httpmock
 import java.lang.AssertionError
 
 class ExpectCountSpec extends TestHelper {
-  val url : String = s"http://127.0.0.1:$testPort"
+  val url: String = s"http://127.0.0.1:$testPort"
 
   describe("count") {
     it("passes an assertion about counting accesslogs") {
       HttpMock.run(testPort) { server =>
         get(url)
-        server.logs.expect(GET, count = 1)  (timeout)
+        server.logs.expect(GET, count = 1)(timeout)
       }
     }
 
@@ -17,7 +17,7 @@ class ExpectCountSpec extends TestHelper {
       HttpMock.run(testPort) { server =>
         get(url)
         intercept[AssertionError] {
-          server.logs.expect(GET, count = 2)  (timeout)
+          server.logs.expect(GET, count = 2)(timeout)
         }
       }
     }
@@ -26,7 +26,7 @@ class ExpectCountSpec extends TestHelper {
       HttpMock.run(testPort) { server =>
         post(url, "body")
         intercept[AssertionError] {
-          server.logs.expect(GET, count = 1)  (timeout)
+          server.logs.expect(GET, count = 1)(timeout)
         }
       }
     }

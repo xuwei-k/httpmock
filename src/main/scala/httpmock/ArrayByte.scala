@@ -31,7 +31,7 @@ object ArrayByte extends (ByteString => ArrayByte) {
     val builder = new java.lang.StringBuilder
     var i = 0
     val len = bytes.length min maxSize
-    while(i < len){
+    while (i < len) {
       builder.append("%02x".format(bytes(i) & 0xff))
       i += 1
     }

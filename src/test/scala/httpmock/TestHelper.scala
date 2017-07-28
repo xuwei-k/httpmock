@@ -43,7 +43,7 @@ trait TestHelper extends FunSpec with BeforeAndAfterEach with TestConfig {
 
   def post(url: String, body: String, headers: Map[String, String] = Map[String, String]()): Response = {
     val map = new FluentCaseInsensitiveStringsMap()
-    for ((k,v) <- headers) map.add(k, v)
+    for ((k, v) <- headers) map.add(k, v)
 
     onAhc { client =>
       val f: JavaFuture[Response] = client.preparePost(url).setBody(body).setHeaders(map).execute()
@@ -52,9 +52,7 @@ trait TestHelper extends FunSpec with BeforeAndAfterEach with TestConfig {
   }
 
   protected def newAsyncHttpClient(): AsyncHttpClient = {
-    val config = new AsyncHttpClientConfig.Builder()
-      .setRequestTimeout(requestTimeoutMs)
-      .build()
+    val config = new AsyncHttpClientConfig.Builder().setRequestTimeout(requestTimeoutMs).build()
     new AsyncHttpClient(config)
   }
 

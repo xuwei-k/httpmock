@@ -10,7 +10,7 @@ class HttpMockSpec extends TestHelper {
     def anyPaths: Seq[String] = Seq("", "foo", "foo/bar")
 
     it("can create http service on some port") {
-      start{ server =>
+      start { server =>
         assert(server.port > 0)
       }
     }

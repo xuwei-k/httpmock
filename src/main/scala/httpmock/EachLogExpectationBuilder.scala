@@ -10,14 +10,15 @@ import scala.concurrent.duration._
 
 final case class EachLogExpectationBuilder(
   methodOpt: Option[HttpMethod], // accept all method if None
-  headers : Headers = Headers(),
-  bodyOpt : Option[ArrayByte] = None,  // body for sequential matcher
-  count   : Int = 1,
+  headers: Headers = Headers(),
+  bodyOpt: Option[ArrayByte] = None, // body for sequential matcher
+  count: Int = 1,
   queue: AccessLogQueue
 ) {
   def method: String = methodOpt.fold("")(_.value)
 
-  def body(v: String, charset: Charset = UTF_8): EachLogExpectationBuilder = copy(bodyOpt = Some(ArrayByte(ByteString(v.getBytes(charset)))))
+  def body(v: String, charset: Charset = UTF_8): EachLogExpectationBuilder =
+    copy(bodyOpt = Some(ArrayByte(ByteString(v.getBytes(charset)))))
 
   def count(v: Int): EachLogExpectationBuilder = copy(count = v)
 

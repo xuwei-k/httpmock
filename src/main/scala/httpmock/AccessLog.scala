@@ -3,8 +3,8 @@ package httpmock
 import play.api.mvc.RequestHeader
 
 final case class AccessLog(
-  request : RequestHeader,
-  bodyOpt : Option[ArrayByte] = None
+  request: RequestHeader,
+  bodyOpt: Option[ArrayByte] = None
 ) {
 
   override def equals(other: Any): Boolean = other match {

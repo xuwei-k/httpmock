@@ -10,12 +10,16 @@ val unusedWarnings = Seq("-Ywarn-unused", "-Ywarn-unused-import")
 
 scalacOptions ++= unusedWarnings
 scalacOptions ++= Seq(
-  "-encoding", "UTF-8", "-target:jvm-1.8", "-deprecation",
-  "-feature", "-unchecked", "-language:implicitConversions", "-language:postfixOps")
+  "-encoding",
+  "UTF-8",
+  "-target:jvm-1.8",
+  "-deprecation",
+  "-feature",
+  "-unchecked",
+  "-language:implicitConversions",
+  "-language:postfixOps")
 
-Seq(Compile, Test).flatMap(c =>
-  scalacOptions in (c, console) --= unusedWarnings
-)
+Seq(Compile, Test).flatMap(c => scalacOptions in (c, console) --= unusedWarnings)
 
 organization := "com.github.xuwei-k"
 name := "httpmock"
@@ -23,19 +27,17 @@ description := "Real http server for stubbing and expectations in Scala"
 homepage := Some(url("https://github.com/xuwei-k/httpmock"))
 licenses := Seq("MIT License" -> url("http://www.opensource.org/licenses/mit-license.php"))
 
-pomExtra := (
-     <developers>
-        <developer>
-          <id>xuwei-k</id>
-          <name>Kenji Yoshida</name>
-          <url>https://github.com/xuwei-k</url>
-        </developer>
-      </developers>
-      <scm>
-        <url>https://github.com/xuwei-k/httpmock</url>
-        <connection>scm:git:git@github.com:xuwei-k/httpmock.git</connection>
-      </scm>
-)
+pomExtra := <developers>
+  <developer>
+    <id>xuwei-k</id>
+    <name>Kenji Yoshida</name>
+    <url>https://github.com/xuwei-k</url>
+  </developer>
+</developers>
+<scm>
+  <url>https://github.com/xuwei-k/httpmock</url>
+  <connection>scm:git:git@github.com:xuwei-k/httpmock.git</connection>
+</scm>
 
 libraryDependencies ++= Seq(
   "com.typesafe.play" %% "play-netty-server" % "2.6.2",
