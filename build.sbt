@@ -6,9 +6,16 @@ releaseCrossBuild := true
 crossScalaVersions := "2.12.3" :: Scala211 :: Nil
 scalaVersion := Scala211
 
-scalacOptions := Seq(
+val unusedWarnings = Seq("-Ywarn-unused", "-Ywarn-unused-import")
+
+scalacOptions ++= unusedWarnings
+scalacOptions ++= Seq(
   "-encoding", "UTF-8", "-target:jvm-1.8", "-deprecation",
   "-feature", "-unchecked", "-language:implicitConversions", "-language:postfixOps")
+
+Seq(Compile, Test).flatMap(c =>
+  scalacOptions in (c, console) --= unusedWarnings
+)
 
 organization := "com.github.xuwei-k"
 name := "httpmock"

@@ -4,7 +4,6 @@ import org.scalatest.{BeforeAndAfterEach, FunSpec}
 import com.ning.http.client._
 import scala.collection.mutable
 
-import collection.JavaConversions._
 import scala.concurrent.duration._
 
 trait TestHelper extends FunSpec with BeforeAndAfterEach with TestConfig {

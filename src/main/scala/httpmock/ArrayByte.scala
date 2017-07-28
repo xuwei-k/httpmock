@@ -1,7 +1,5 @@
 package httpmock
 
-import java.util
-
 import akka.util.ByteString
 
 /**
