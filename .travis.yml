@@ -14,7 +14,7 @@ addons:
     packages:
     - oracle-java8-installer
 scala:
-- 2.12.3
-- 2.11.11
+- 2.12.4
+- 2.11.12
 script:
 - sbt -batch ++${TRAVIS_SCALA_VERSION} scalafmtTest test

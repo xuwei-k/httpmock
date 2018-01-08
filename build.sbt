@@ -1,4 +1,4 @@
-val Scala211 = "2.11.11"
+val Scala211 = "2.11.12"
 
 publishTo := Some(
   if (isSnapshot.value)
@@ -10,7 +10,7 @@ publishTo := Some(
 releasePublishArtifactsAction := PgpKeys.publishSigned.value
 releaseCrossBuild := true
 
-crossScalaVersions := "2.12.3" :: Scala211 :: Nil
+crossScalaVersions := "2.12.4" :: Scala211 :: Nil
 scalaVersion := Scala211
 
 val unusedWarnings = Seq("-Ywarn-unused", "-Ywarn-unused-import")
@@ -47,8 +47,8 @@ pomExtra := <developers>
 </scm>
 
 libraryDependencies ++= Seq(
-  "com.typesafe.play" %% "play-netty-server" % "2.6.2",
-  "org.scalatest" %% "scalatest" % "3.0.3" % "test",
+  "com.typesafe.play" %% "play-netty-server" % "2.6.10",
+  "org.scalatest" %% "scalatest" % "3.0.4" % "test",
   "com.ning" % "async-http-client" % "1.9.40" % "test"
 )
 
