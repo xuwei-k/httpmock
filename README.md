@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/xuwei-k/httpmock.svg?branch=master)](https://travis-ci.org/xuwei-k/httpmock)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.xuwei-k/httpmock_2.12/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.xuwei-k/httpmock_2.12)
-[![scaladoc](http://javadoc-badge.appspot.com/com.github.xuwei-k/httpmock_2.12.svg?label=scaladoc)](http://javadoc-badge.appspot.com/com.github.xuwei-k/httpmock_2.12/httpmock/index.html?javadocio=true)
+[![scaladoc](https://javadoc-badge.appspot.com/com.github.xuwei-k/httpmock_2.12.svg?label=scaladoc)](https://javadoc-badge.appspot.com/com.github.xuwei-k/httpmock_2.12/httpmock/index.html?javadocio=true)
 
 
 # HttpMock
