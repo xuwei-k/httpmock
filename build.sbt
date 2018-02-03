@@ -47,8 +47,8 @@ pomExtra := <developers>
 </scm>
 
 libraryDependencies ++= Seq(
-  "com.typesafe.play" %% "play-netty-server" % "2.6.10",
-  "org.scalatest" %% "scalatest" % "3.0.4" % "test",
+  "com.typesafe.play" %% "play-netty-server" % "2.6.11",
+  "org.scalatest" %% "scalatest" % "3.0.5" % "test",
   "com.ning" % "async-http-client" % "1.9.40" % "test"
 )
 
