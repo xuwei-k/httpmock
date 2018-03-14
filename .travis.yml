@@ -17,4 +17,4 @@ scala:
 - 2.12.4
 - 2.11.12
 script:
-- sbt -batch ++${TRAVIS_SCALA_VERSION} scalafmtSbtCheck scalafmtCheck test:scalafmtCheck test
+- sbt -batch "++${TRAVIS_SCALA_VERSION}!" scalafmtSbtCheck scalafmtCheck test:scalafmtCheck test
