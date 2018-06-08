@@ -13,7 +13,7 @@ releaseCrossBuild := true
 crossScalaVersions := "2.12.6" :: Scala211 :: Nil
 scalaVersion := Scala211
 
-val unusedWarnings = Seq("-Ywarn-unused", "-Ywarn-unused-import")
+val unusedWarnings = Seq("-Ywarn-unused")
 
 scalacOptions ++= unusedWarnings
 scalacOptions ++= Seq(
