@@ -31,7 +31,11 @@ trait TestHelper extends FunSpec with BeforeAndAfterEach with TestConfig {
 
   def start[A](setting: Setting)(action: HttpMock => A): Unit = {
     val server = setting.start
-    try { action(server) } finally { server.stop }
+    try {
+      action(server)
+    } finally {
+      server.stop
+    }
   }
 
   def get(url: String): Response = {

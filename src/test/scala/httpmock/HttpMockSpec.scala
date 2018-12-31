@@ -4,7 +4,11 @@ class HttpMockSpec extends TestHelper {
   describe("start") {
     def start[A](action: HttpMock => A): Unit = {
       val server = HttpMock.start
-      try { action(server) } finally { server.stop }
+      try {
+        action(server)
+      } finally {
+        server.stop
+      }
     }
 
     def anyPaths: Seq[String] = Seq("", "foo", "foo/bar")

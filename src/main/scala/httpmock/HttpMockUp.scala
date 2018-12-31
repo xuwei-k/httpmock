@@ -7,5 +7,10 @@ case class HttpMockUp(setting: Setting, netty: NettyServer) extends HttpMock {
 
   def start(): HttpMock = this
   def stop(): HttpMock = { netty.stop(); HttpMockDown(setting, port) }
-  def run[A](action: HttpMockUp => A): Unit = try { action(this) } finally { stop() }
+  def run[A](action: HttpMockUp => A): Unit =
+    try {
+      action(this)
+    } finally {
+      stop()
+    }
 }

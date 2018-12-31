@@ -24,7 +24,8 @@ scalacOptions ++= Seq(
   "-feature",
   "-unchecked",
   "-language:implicitConversions",
-  "-language:postfixOps")
+  "-language:postfixOps"
+)
 
 Seq(Compile, Test).flatMap(c => scalacOptions in (c, console) --= unusedWarnings)
 
