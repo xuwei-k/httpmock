@@ -1,12 +1,13 @@
 package httpmock
 
-import org.scalatest.{BeforeAndAfterEach, FunSpec}
+import org.scalatest.BeforeAndAfterEach
+import org.scalatest.funspec.AnyFunSpec
 import com.ning.http.client._
 import scala.collection.mutable
 
 import scala.concurrent.duration._
 
-trait TestHelper extends FunSpec with BeforeAndAfterEach with TestConfig {
+trait TestHelper extends AnyFunSpec with BeforeAndAfterEach with TestConfig {
   import java.util.concurrent.{Future => JavaFuture, TimeUnit}
 
   protected val timeout = 0.5.second
