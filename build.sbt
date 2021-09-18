@@ -27,7 +27,7 @@ scalacOptions ++= Seq(
   "-language:postfixOps"
 )
 
-Seq(Compile, Test).flatMap(c => scalacOptions in (c, console) --= unusedWarnings)
+Seq(Compile, Test).flatMap(c => c / console / scalacOptions --= unusedWarnings)
 
 organization := "com.github.xuwei-k"
 name := "httpmock"
@@ -53,5 +53,5 @@ libraryDependencies ++= Seq(
   "com.ning" % "async-http-client" % "1.9.40" % "test"
 )
 
-fork in run := true
-fork in Test := true
+run / fork := true
+Test / fork := true
