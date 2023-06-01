@@ -10,7 +10,7 @@ publishTo := Some(
 releasePublishArtifactsAction := PgpKeys.publishSigned.value
 releaseCrossBuild := true
 
-crossScalaVersions := "2.12.17" :: Scala211 :: Nil
+crossScalaVersions := "2.12.18" :: Scala211 :: Nil
 scalaVersion := Scala211
 
 val unusedWarnings = Seq("-Ywarn-unused")
@@ -49,7 +49,7 @@ pomExtra := <developers>
 
 libraryDependencies ++= Seq(
   "com.typesafe.play" %% "play-netty-server" % "2.6.25",
-  "org.scalatest" %% "scalatest-funspec" % "3.2.14" % "test",
+  "org.scalatest" %% "scalatest-funspec" % "3.2.16" % "test",
   "com.ning" % "async-http-client" % "1.9.40" % "test"
 )
 
