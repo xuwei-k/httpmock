@@ -10,7 +10,7 @@ publishTo := Some(
 releasePublishArtifactsAction := PgpKeys.publishSigned.value
 releaseCrossBuild := true
 
-crossScalaVersions := "2.12.18" :: Scala211 :: Nil
+crossScalaVersions := "2.13.12" :: Scala211 :: Nil
 scalaVersion := Scala211
 
 val unusedWarnings = Seq("-Ywarn-unused")
