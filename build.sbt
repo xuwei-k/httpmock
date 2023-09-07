@@ -49,7 +49,7 @@ pomExtra := <developers>
 
 libraryDependencies ++= Seq(
   "com.typesafe.play" %% "play-netty-server" % "2.6.25",
-  "org.scalatest" %% "scalatest-funspec" % "3.2.16" % "test",
+  "org.scalatest" %% "scalatest-funspec" % "3.2.17" % "test",
   "com.ning" % "async-http-client" % "1.9.40" % "test"
 )
 
